@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clayton Mo</title>
+    <style>
+        :root {
+            --primary: #00e0ff;
+            --accent: #7f5af0;
+            --bg: #000;
+            --card-bg: #1e293b;
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --border: #334155;
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            scroll-behavior: smooth;
+        }
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            color: #fff;
+            text-align: left;
+            padding: 5vh 3vw 0 3vw;
+            overflow: hidden;
+            background: #000;
+        }
+        .hero-bulb {
+            position: absolute;
+            left: 65%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 4000px;
+            height: 4000px;
+            max-width: 100vw;
+            max-height: 120vh;
+            background: url('lightbulb.gif') center center/contain no-repeat;
+            background-size: contain;
+            margin: 0;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            flex: 1 1 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 450px;
+            margin-left: 0;
+            margin-right: 25vw;
+            align-items: flex-start;
+            margin-bottom: 0;
+        }
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1.2rem;
+            letter-spacing: -2px;
+            text-shadow: 0 2px 16px #000, 0 0 8px #000, 0 0 2px #00e0ff88;
+            animation: fadeInUp 1s cubic-bezier(.23,1.01,.32,1) 0.1s both;
+            margin-top: 0;
+        }
+        .hero-mission {
+            font-size: 1.25rem;
+            color: #dbeafe;
+            max-width: 450px;
+            font-weight: 400;
+            line-height: 1.5;
+            text-shadow: 0 2px 8px #000, 0 0 2px #000;
+            animation: fadeInUp 1s cubic-bezier(.23,1.01,.32,1) 0.5s both;
+            margin-bottom: 0;
+        }
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 2rem 2rem 2rem;
+        }
+        #other {
+            margin-top: 2.5rem;
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            letter-spacing: -1px;
+            text-align: left;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            align-items: start;
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.2s, transform 0.2s;
+            min-width: 0;
+            height: 400px; /* Fixed height for all cards */
+        }
+        .card:hover {
+            box-shadow: 0 6px 24px 0 rgba(0,224,255,0.10);
+            transform: translateY(-4px) scale(1.01);
+        }
+        .card-img {
+            width: 100%;
+            height: 140px; /* Default height for card images */
+            object-fit: cover;
+            background: #222;
+            border-bottom: 1px solid var(--border);
+        }
+        .card-img.img-crispr { height: 270px; }
+        .card-img.img-ai { height: 240px; }
+        .card-img.img-precision { height: 270px; }
+        .card-img.img-pymol { height: 250px; }
+        .card-img.img-tks { height: 210px; }
+        .card-img.img-ikea { height: 250px; }
+        .card-img.taller-img {
+            height: 200px;
+        }
+        .card-img.tallest-img {
+            height: 220px;
+        }
+        .card-img.ikea-img {
+            height: 220px;
+        }
+        .card-body {
+            padding: 1.2rem 1.5rem 1.5rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1; /* Allow card-body to take up remaining space */
+        }
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+        .card-desc {
+            color: var(--muted);
+            font-size: 1rem;
+            margin-bottom: 1.2rem;
+        }
+        .card-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .card-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+            margin-right: 1rem;
+        }
+        .card-link:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        .contact {
+            text-align: center;
+            margin-top: 4rem;
+            color: var(--muted);
+        }
+        .contact-links {
+            margin-top: 0;
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .contact-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid var(--primary);
+            border-radius: 6px;
+            padding: 0.6rem 1.2rem;
+            background: var(--card-bg);
+            transition: background 0.2s, color 0.2s;
+        }
+        .contact-link:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+        @media (max-width: 1600px) {
+            .hero-bulb {
+                width: 1200px;
+                height: 1200px;
+                max-width: 60vw;
+                margin-top: -4vh;
+            }
+        }
+        @media (max-width: 1200px) {
+            .hero-bulb {
+                width: 600px;
+                height: 600px;
+                max-width: 70vw;
+                margin-top: 0;
+            }
+        }
+        @media (max-width: 800px) {
+            .hero {
+                flex-direction: column;
+                padding: 2vw;
+            }
+            .hero-content {
+                margin-left: 0;
+                align-items: center;
+                text-align: center;
+            }
+            .hero-bulb {
+                margin-left: 0;
+                margin-top: 2vw;
+            }
+        }
+        .down-arrow {
+            display: block;
+            width: 36px;
+            height: 36px;
+            margin: 2rem auto 0 auto;
+            cursor: pointer;
+            z-index: 1;
+            opacity: 0.35;
+            transition: opacity 0.2s;
+        }
+        .down-arrow svg {
+            stroke: #fff;
+        }
+        .down-arrow:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header class="hero" style="position:relative;">
+        <div class="hero-content">
+            <div class="hero-title">Clayton Mo</div>
+            <div class="hero-mission">Interested in precision medicine, specifically in how gene editing can completely transform treatments for genetic diseases. I also love looking into AI and how it can shape the future. In my free time, I enjoy programming and making my own projects.</div>
+        </div>
+        <div class="hero-bulb"></div>
+        <a class="down-arrow" aria-label="Scroll down" style="position:absolute;left:50%;bottom:5rem;transform:translateX(-50%);">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:block;">
+                <polyline points="6 9 12 15 18 9"/>
+            </svg>
+        </a>
+    </header>
+    <div id="contact-links" class="contact-links" style="justify-content:center;gap:2.5rem;flex-wrap:wrap;margin: 0.5rem 0 2.5rem 0;display:flex;align-items:center;">
+        <a class="contact-link" href="https://medium.com/@moclayton1105" target="_blank">Medium</a>
+        <a class="contact-link" href="https://www.linkedin.com/in/clayton-mo-55a111340/" target="_blank">LinkedIn</a>
+        <a class="contact-link" href="https://www.youtube.com/@clayton_mo" target="_blank">YouTube</a>
+        <a class="contact-link" href="mailto:moclayton1105@gmail.com">Email Me</a>
+    </div>
+
+    <section class="section" id="projects">
+        <div class="card-grid">
+            <div class="card">
+                <img class="card-img img-crispr" src="new-images/cas9-paper.jpg" alt="Paper Model of CRISPR">
+                <div class="card-body">
+                    <div class="card-title">A paper model of CRISPR at work</div>
+                    <div class="card-desc">Learning about CRISPR.</div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://medium.com/@moclayton1105/a-paper-model-of-crispr-at-work-6e4a7d4120f3" target="_blank">Read on Medium</a>
+                        <a class="card-link" href="https://www.youtube.com/watch?v=8Izh5dMuk7o" target="_blank">Video</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img img-ai" src="new-images/vaccine-globe.jpg" alt="AI mRNA Vaccine">
+                <div class="card-body">
+                    <div class="card-title">How AI can help create more effective mRNA vaccines</div>
+                    <div class="card-desc">How CNN models could help with the development of mRNA vaccines.</div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://medium.com/@moclayton1105/how-ai-can-help-create-more-effective-mrna-vaccines-6be34697068c" target="_blank">Read on Medium</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img img-precision" src="new-images/cell-division.jpg" alt="Precision Medicine">
+                <div class="card-body">
+                    <div class="card-title">How precision medicine is revolutionizing healthcare</div>
+                    <div class="card-desc">My learnings in precision medicine!</div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://medium.com/@moclayton1105/how-precision-medicine-is-revolutionizing-healthcare-f5b9c5cd6798" target="_blank">Read on Medium</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="new-images/stars.jpg" alt="Polarbox">
+                <div class="card-body">
+                    <div class="card-title">polarbox: a passive cooling system using PCMs and radiative cooling</div>
+                    <div class="card-desc">A sustainable, off-grid solution for cold storage in clear weather. Won "Best Overall" at the TKS moonshot challenge 2025.</div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://medium.com/@moclayton1105/polarbox-a-passive-cooling-system-using-pcms-and-radiative-cooling-b6ad09def943" target="_blank">Read on Medium</a>
+                        <a class="card-link" href="https://snappy-onepage-site-builder.lovable.app" target="_blank">Website</a>
+                        <a class="card-link" href="https://www.canva.com/design/DAGmgqVc040/z7OVDmc43zOZbrM7dfPv6g/view?utm_content=DAGmgqVc040&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hd2aab582d2" target="_blank">One-Pager</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img img-pymol" src="new-images/pymol-green.jpg" alt="PyMOL p53">
+                <div class="card-body">
+                    <div class="card-title">Using PyMOL to simulate a mutation within an p53 protein</div>
+                    <div class="card-desc">Learning PyMOL and how the p53 protein works.</div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://medium.com/@moclayton1105/using-pymol-to-stimulate-a-mutation-within-an-p53-protein-e705d98f2dcf" target="_blank">Read on Medium</a>
+                        <a class="card-link" href="https://www.youtube.com/watch?v=g5cF97amnEU" target="_blank">Video</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="new-images/leaves.jpg" alt="Starfish Writing Contest">
+                <div class="card-body">
+                    <div class="card-title">The Green Society x The Starfish Canada Climate Fiction Writing Contest - 2nd Place</div>
+                    <div class="card-desc">Really cool opportunity to participate + get 2nd place in the Green Society Annual Environmental & Climate Fiction Writing Contest! You can read my article in The Starfish, one of Canada's leading environmental advocacy journals.</div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://thestarfish.ca/journal/2025/01/in-groves-where-flora-once-sweetly-sighed-2nd-place-junior-division-the-green-society-x-the-starfish-climate-fiction-writing-contest" target="_blank">Read on The Starfish</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img img-tks" src="new-images/windows-blue.jpg" alt="TKS x Microsoft Challenge">
+                <div class="card-body">
+                    <div class="card-title">TKS x Microsoft Challenge </div>
+                    <div class="card-desc">Amazing opportunity to continue developing my teamwork and slidedeck building skills. Our recommendation is fuel cell optimization.</div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://docs.google.com/presentation/d/1H5ZVkl-Fkq3j3BFsc2KoL_9lgs6F7MGtG9SvRWxSgAw/edit?slide=id.g2a8a6753399_0_0#slide=id.g2a8a6753399_0_0" target="_blank">View Slides</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img img-ikea" src="new-images/ikea.jpg" alt="TKS x IKEA Challenge">
+                <div class="card-body">
+                    <div class="card-title">TKS x IKEA Challenge</div>
+                    <div class="card-desc">Our slidedeck based on streamlining returns in IKEA</div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://docs.google.com/presentation/d/112MueyZYAZG73gyvFy5riQ0XFpPFye7ISIUEpJH7gnI/edit#slide=id.g32608f417d8_1_0" target="_blank">View Slides</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+    // Custom smooth scroll with setInterval for constant, fast pace
+    const arrow = document.querySelector('.down-arrow');
+    const contactLinks = document.getElementById('contact-links');
+    arrow.addEventListener('click', function(e) {
+        e.preventDefault();
+        const offset = 40; // px, less space at top
+        const targetY = contactLinks.getBoundingClientRect().top + window.pageYOffset - offset;
+        const startY = window.pageYOffset;
+        const distance = targetY - startY;
+        const duration = 250; // ms, very fast scroll
+        const steps = 20;
+        let currentStep = 0;
+        const stepSize = distance / steps;
+        const interval = duration / steps;
+        const scrollInterval = setInterval(() => {
+            currentStep++;
+            window.scrollTo(0, startY + stepSize * currentStep);
+            if (currentStep >= steps) {
+                window.scrollTo(0, targetY);
+                clearInterval(scrollInterval);
+            }
+        }, interval);
+    });
+    </script>
+</body>
+</html> 
